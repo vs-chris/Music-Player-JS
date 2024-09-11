@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    font-family: sans-serif;
+    background: rgba(0, 0, 0, 0.808);
+    color: aliceblue;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .music-app {
+    min-width: 350px;
+    min-height: 500px;
+    background: rgba(255, 255, 255, 0.20);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.253);
+}
+
+.container .music-app h1 {
+    margin-bottom: 10px;
+}
+
+.container .music-app p {
+    margin-bottom: 20px;
+}
+
+.disc {
+    width: 200px;
+    height: 200px;
+    border: 10px solid rgba(255, 255, 255, 0.08);
+    margin: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.253);
+    animation: disc-rotation 10s forwards infinite linear;
+}
+
+.disc.paused {
+    animation-play-state: paused;
+}
+
+@keyframes disc-rotation {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.disc::after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    transform: translate(50%, -50%);
+    background: #5a5a5a;
+    box-shadow: 0px 0px 0px 25px rgba(20, 20, 20, 0.363);
+    z-index: 1;
+}
+
+.disc img {
+    width: 300px;
+    height: auto;
+}
+
+.music-range {
+    width: 100%;
+    padding: 0 40px;
+}
+
+.music-range .max-time {
+    float: right;
+}
+
+
+#m-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    outline: none;
+    height: 8px;
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#m-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    background-color:rgba(20, 20, 20, 1) ;
+    box-shadow: -200px 0 0 198px orange;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+.buttons button {
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.253);
+}
+.buttons button svg {
+    width: 20px;
+    padding: 0;
+}
+
+.buttons button:nth-child(3) svg {
+    padding-left: 2px;
+    transition: 0.5s;
+}
+
+.buttons button:nth-child(1) svg {
+    padding-right: 2px;
+    transition: 0.5s;
+}
+
+.buttons button:nth-child(3):hover svg {
+    transform: translateX(3px);
+}
+
+.buttons button:nth-child(1):hover svg {
+    transform: translateX(-3px);
+}
+
+.buttons button:nth-child(2) {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 0 2px 8px rgba(255, 166, 0, 0.1);
+    animation: neon 1.5s infinite alternate;
+}
+
+@keyframes neon {
+    100% {
+        box-shadow: 0 0 2px 0px rgba(255, 166, 0, 0.1);
+    }
+}
+
+.buttons button:nth-child(2)::before {
+    content: "";
+    background-color: black;
+    height: 25px;
+    width: 25px;
+    transition: all 0.5s;
+    position: absolute;
+    left: 14px;
+    clip-path: polygon(0 0, 30% 0, 30% 100%, 0% 100%)
+}
+
+.buttons button.paused:nth-child(2):before {
+
+    clip-path: polygon(0 0, 100% 49%, 100% 50%, 0% 100%);
+
+}
+
+.buttons button:nth-child(2)::after {
+    content: "";
+    background-color: black;
+    height: 25px;
+    width: 25px;
+    transition: all 0.5s;
+    position: absolute;
+    right: -2px;
+    clip-path: polygon(0 0, 30% 0, 30% 100%, 0% 100%);
+}
+
+.buttons button.paused:nth-child(2)::after {
+    clip-path: polygon(0 100%, 0 100%, 0 100%, 0 100%);
+}
